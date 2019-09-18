@@ -38,6 +38,7 @@ class Engine{
 		}
 		}
 
+
 	getTimestamp(){
 		if(window.performance && window.performance.now()){
 			return window.performance.now();

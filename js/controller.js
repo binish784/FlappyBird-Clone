@@ -6,6 +6,10 @@ class Controller{
 
   handleKeyDown(event){
     if(event.type=="keydown" && !this.keydown){
+      if(event.keyCode==32 && !game.game_start){
+        game.game_start=true;
+        game.pipe_speed=2;
+      }
       if(event.keyCode==32){
         game.bird_jump();
         this.keydown=true;

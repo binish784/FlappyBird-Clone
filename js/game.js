@@ -5,7 +5,7 @@ class Game{
     this.bird=new Bird();
     this.pipes=[];
     this.gravity=5;
-    this.pipe_speed=2;
+    this.pipe_speed=0;
     this.pipe_number=3;
     this.pipe_start=500;
     this.pipe_distance=200;
@@ -24,6 +24,7 @@ class Game{
     this.canvas_height=600;
     this.hit_sound= new Audio("resources/audio/hit.wav");
     this.point_sound= new Audio("resources/audio/point.wav");
+    this.game_start=false;
   }
 
   initializePipes(){
@@ -85,7 +86,9 @@ class Game{
   }
 
   update(){
-    this.bird_fall();
+    if(this.game_start){
+      this.bird_fall();
+    }
     this.bird.tickJumpTimer();
     this.movePipes();
     this.checkCollision();
