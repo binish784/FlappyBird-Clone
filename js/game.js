@@ -1,27 +1,29 @@
 class Game{
   constructor(canvas){
+    this.score=0;
+    this.canvas=canvas;
     this.bird=new Bird();
     this.pipes=[];
-    this.canvas_height=600;
-    this.canvas_width=450;
-    this.canvas=canvas;
-    this.ctx=this.canvas.getContext('2d');
     this.gravity=5;
-    this.pipe_distance=200;
-    this.pipe_number=3;
     this.pipe_speed=2;
+    this.pipe_number=3;
     this.pipe_start=500;
-    this.game_over_sprite=new Image();
+    this.pipe_distance=200;
     this.floor=new Image();
     this.background=new Image();
-    this.game_over_sprite.src='img/gameover.png';
-    this.background.src="img/background.png";
+    this.game_over_sprite=new Image();
     this.floor.src="img/base.png";
+    this.background.src="img/background.png";
+    this.game_over_sprite.src='img/gameover.png';
+    this.ctx=this.canvas.getContext('2d');
     this.background_pattern=undefined;
     this.floor_pattern=undefined;
     this.latest_pipe=this.pipe_number-1;
     this.game_over=false;
-    this.score=0;
+    this.canvas_width=450;
+    this.canvas_height=600;
+    this.hit_sound= new Audio("resources/audio/hit.wav");
+    this.point_sound= new Audio("resources/audio/point.wav");
   }
 
   initializePipes(){
@@ -58,14 +60,17 @@ class Game{
       this.pipes.forEach(function(pipe,index){
         if(this.bird.x<=(pipe.x+pipe.pipe_width) && (this.bird.x+this.bird.width)>=pipe.x && (this.bird.y<=pipe.top || (this.bird.y+this.bird.height)>=pipe.bottom)){
           this.game_over=true;
+          this.hit_sound.play();
         }
         if(((pipe.x+pipe.pipe_width)-this.bird.x)<this.pipe_speed && ((pipe.x+pipe.pipe_width)-this.bird.x)>0){
           this.score++;
+          this.point_sound.play();
         }
       }.bind(this));
 
       if((this.bird.y+this.bird.height)>(this.canvas_height-this.floor.height)){
         this.game_over=true;
+        this.hit_sound.play();
       };
     }
 

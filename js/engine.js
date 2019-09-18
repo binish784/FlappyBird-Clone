@@ -8,36 +8,35 @@ class Engine{
 		this.render=render;
 		this.animator=undefined;
 		this.accumulated_time=0;
-		this.frame_rate=frame_rate;
+    this.frame_rate=frame_rate;
 		console.log("Engine Initialized");
 	}
 
+
 	run(){
 		if(!game.game_over){
-		this.now=this.getTimestamp();
-
-		this.accumulated_time+=(this.last_time-this.now_time);
-		if(this.accumulated_time>=this.frame_rate*3){
-			this.accumulated_time=this.frame_rate;
+			this.now=this.getTimestamp();
+			this.accumulated_time+=(this.last_time-this.now_time);
+			if(this.accumulated_time>=this.frame_rate*3){
+				this.accumulated_time=this.frame_rate;
+			}
+			while(this.accumulated_time>=this.frame_rate){
+				this.accumulated_time-=this.frame_rate;
+				this.update();
+				this.updated=true;
+			}
+			if(this.updated){
+				this.render();
+				this.updated=false;
+			}
+			this.animator=window.requestAnimationFrame(function(){
+				this.run();
+			}.bind(this));
+			this.last_time=this.now;
+		}else{
+			game.showGameOver();
 		}
-		while(this.accumulated_time>=this.frame_rate){
-			this.accumulated_time-=this.frame_rate;
-			this.update();
-			this.updated=true;
 		}
-		if(this.updated){
-			this.render();
-			this.updated=false;
-		}
-		this.animator=window.requestAnimationFrame(function(){
-			this.run();
-		}.bind(this));
-		this.last_time=this.now;
-	}else{
-		game.showGameOver();
-	}
-}
-
 
 	getTimestamp(){
 		if(window.performance && window.performance.now()){
