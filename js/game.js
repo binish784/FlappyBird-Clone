@@ -9,23 +9,43 @@ class Game{
     this.pipe_number=3;
     this.pipe_start=500;
     this.pipe_distance=200;
-    this.floor=new Image();
-    this.background=new Image();
-    this.game_over_sprite=new Image();
-    this.floor.src="img/base.png";
-    this.background.src="img/background.png";
-    this.game_over_sprite.src='img/gameover.png';
-    this.ctx=this.canvas.getContext('2d');
     this.background_pattern=undefined;
+    this.ctx=this.canvas.getContext('2d');
     this.floor_pattern=undefined;
     this.latest_pipe=this.pipe_number-1;
     this.game_over=false;
     this.canvas_width=450;
-    this.canvas_height=600;
+    this.screen=0;
+		this.canvas_height=600;
+    this.floor=new Image();
+    this.background=new Image();
+    this.game_over_sprite=new Image();
+    this.ready_sprite=new Image();
+    this.ready_sprite.src="img/ready.png";
+    this.floor.src="img/base.png";
+    this.background.src="img/background.png";
+    this.game_over_sprite.src='img/gameover.png';
     this.hit_sound= new Audio("resources/audio/hit.wav");
     this.point_sound= new Audio("resources/audio/point.wav");
+    this.audios=[this.hit_sound,this.point_sound];
+    this.sprites=[this.floor,this.background,this.game_over_sprite,this.ready_sprite];
     this.game_start=false;
   }
+
+  loadAssets(){
+    this.sprites.forEach(function(img,index){
+      img.addEventListener("load",function(){
+        console.log("");
+      })
+    })
+    this.audios.forEach(function(aud,index){
+      aud.addEventListener("load",function(){
+        console.log("")
+      })
+    })
+    this.bird.loadSprite();
+  }
+
 
   initializePipes(){
     for(var i=0;i<this.pipe_number;i++){
@@ -77,12 +97,18 @@ class Game{
 
   checkDead(){
     if(this.game_over){
+      this.screen=2;
       engine.stop();
+      engine.run();
     }
   }
 
   showGameOver(){
     this.ctx.drawImage(this.game_over_sprite,0,0,this.game_over_sprite.width,this.game_over_sprite.height,140,150,this.game_over_sprite.width,this.game_over_sprite.height);
+  }
+
+  showReady(){
+    this.ctx.drawImage(this.ready_sprite,0,0,this.ready_sprite.width,this.ready_sprite.height,140,150,this.ready_sprite.width,this.ready_sprite.height);
   }
 
   update(){
@@ -92,6 +118,7 @@ class Game{
     this.bird.tickJumpTimer();
     this.movePipes();
     this.checkCollision();
+    this.checkDead();
   }
 
   renderPipes(){

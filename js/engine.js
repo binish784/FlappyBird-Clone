@@ -12,9 +12,23 @@ class Engine{
 		console.log("Engine Initialized");
 	}
 
+		handleScreen(){
+			// console.log(game.screen);
+			switch (game.screen) {
+				case 0:
+					// console.log("show Ready");
+					this.render();
+					game.showReady();
+					break;
+				case 2:
+					// console.log("Show gameOver");
+					game.showGameOver();
+					break;
+			}
+		}
 
 	run(){
-		if(!game.game_over){
+		if(!game.game_over && game.game_start){
 			this.now=this.getTimestamp();
 			this.accumulated_time+=(this.last_time-this.now_time);
 			if(this.accumulated_time>=this.frame_rate*3){
@@ -34,10 +48,9 @@ class Engine{
 			}.bind(this));
 			this.last_time=this.now;
 		}else{
-			game.showGameOver();
+			this.handleScreen();
 		}
-		}
-
+	}
 
 	getTimestamp(){
 		if(window.performance && window.performance.now()){

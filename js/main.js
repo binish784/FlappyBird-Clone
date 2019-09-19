@@ -1,10 +1,21 @@
 var canvas=document.getElementById("canvas");
 
-var game=new Game(canvas);
+game=undefined;
+controller=undefined;
 
-game.initializePipes();
+window.addEventListener("load",function(){
 
-var controller = new Controller();
+  game=new Game(canvas);
+
+  game.loadAssets();
+
+  game.initializePipes();
+
+
+  controller = new Controller();
+
+})
+
 
 function update(){
   game.update();

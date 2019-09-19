@@ -6,7 +6,11 @@ class Bird{
     this.jump_height=5;
     this.jump_timer=15;
     this.sprite=new Image();
-    this.sprite.src='img/yellow.png';
+    if(randomNumber(0,10)<=5){
+      this.sprite.src='img/yellow.png';
+    }else{
+      this.sprite.src="img/blue.png";
+    }
     this.height=24;
     this.width=34;
     this.sprite_counter=5;
@@ -15,6 +19,12 @@ class Bird{
     this.color="red";
     this.angle=0;
     this.wing_sound= new Audio("resources/audio/wing.wav");
+  }
+
+  loadSprite(){
+    this.sprite.addEventListener("load",function(){
+      console.log("Bird Loaded");
+    })
   }
 
   fall(gravity){
