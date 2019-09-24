@@ -17,6 +17,10 @@ class Game{
     this.canvas_width=450;
     this.screen=0;
 		this.canvas_height=600;
+    this.game_start=false;
+  }
+
+  loadAssets(callback){
     this.floor=new Image();
     this.background=new Image();
     this.game_over_sprite=new Image();
@@ -27,23 +31,14 @@ class Game{
     this.game_over_sprite.src='img/gameover.png';
     this.hit_sound= new Audio("resources/audio/hit.wav");
     this.point_sound= new Audio("resources/audio/point.wav");
-    this.audios=[this.hit_sound,this.point_sound];
-    this.sprites=[this.floor,this.background,this.game_over_sprite,this.ready_sprite];
-    this.game_start=false;
-  }
+    this.assets=[this.floor,this.background,this.game_over_sprite,this.ready_sprite,this.hit_sound,this.point_sound];
 
-  loadAssets(){
-    this.sprites.forEach(function(img,index){
-      img.addEventListener("load",function(){
-        console.log("");
+    this.assets.forEach(function(asset,index){
+      asset.addEventListener("load",function(){
+        callback.start();
       })
     })
-    this.audios.forEach(function(aud,index){
-      aud.addEventListener("load",function(){
-        console.log("")
-      })
-    })
-    this.bird.loadSprite();
+    this.bird.loadSprite(callback);
   }
 
 

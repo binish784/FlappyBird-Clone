@@ -14,6 +14,7 @@ class Controller{
         engine.run();
       }else if(event.keyCode==32 && game.game_over){
         game=new Game(canvas);
+        game.loadAssets(engine);
         game.initializePipes();
         game.screen=0;
         game.pipe_speed=0;

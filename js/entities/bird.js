@@ -21,9 +21,9 @@ class Bird{
     this.wing_sound= new Audio("resources/audio/wing.wav");
   }
 
-  loadSprite(){
+  loadSprite(callback){
     this.sprite.addEventListener("load",function(){
-      console.log("Bird Loaded");
+      callback.start();
     })
   }
 

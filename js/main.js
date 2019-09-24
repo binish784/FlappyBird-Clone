@@ -1,21 +1,14 @@
 var canvas=document.getElementById("canvas");
 
-game=undefined;
-controller=undefined;
+var game=new Game(canvas);
 
-window.addEventListener("load",function(){
+var controller=new Controller();
 
-  game=new Game(canvas);
+var engine=new Engine(1000/30,update,render);
 
-  game.loadAssets();
+game.initializePipes();
 
-  game.initializePipes();
-
-
-  controller = new Controller();
-
-})
-
+game.loadAssets(engine);
 
 function update(){
   game.update();
@@ -24,11 +17,6 @@ function update(){
 function render(){
   game.render();
 }
-
-var engine= new Engine(1000/30,update,render);
-
-engine.start();
-
 
 window.addEventListener("keydown",function(event){
   controller.handleKeyDown(event);

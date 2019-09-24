@@ -9,23 +9,19 @@ class Engine{
 		this.animator=undefined;
 		this.accumulated_time=0;
     this.frame_rate=frame_rate;
-		console.log("Engine Initialized");
 	}
 
-		handleScreen(){
-			// console.log(game.screen);
-			switch (game.screen) {
-				case 0:
-					// console.log("show Ready");
-					this.render();
-					game.showReady();
-					break;
-				case 2:
-					// console.log("Show gameOver");
-					game.showGameOver();
-					break;
-			}
+	handleScreen(){
+		switch (game.screen) {
+			case 0:
+				this.render();
+				game.showReady();
+				break;
+			case 2:
+				game.showGameOver();
+				break;
 		}
+	}
 
 	run(){
 		if(!game.game_over && game.game_start){
