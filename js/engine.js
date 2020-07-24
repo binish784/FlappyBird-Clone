@@ -8,7 +8,11 @@ class Engine{
 		this.render=render;
 		this.animator=undefined;
 		this.accumulated_time=0;
+<<<<<<< HEAD
     	this.frame_rate=frame_rate;
+=======
+    this.frame_rate=frame_rate;
+>>>>>>> 89a254391c1feda5ac86f5f8b97418749a37416d
 	}
 
 	handleScreen(){
