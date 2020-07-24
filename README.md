@@ -16,9 +16,4 @@ This project is built with **_Javascript_** using **_ES6 Classes_**, **_HTML CAN
 
 ### Screenshot
 
-flappy bird clone implemented in js and canvas
-
-
-Demo : https://binish784.github.io/FlappyBird-Clone/
-
 <img src='img/screenshot.png' height=400 width=300>
