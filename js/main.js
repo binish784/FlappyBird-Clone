@@ -25,3 +25,12 @@ window.addEventListener("keydown",function(event){
 window.addEventListener("keyup",function(event){
   controller.handleKeyDown(event);
 });
+
+window.addEventListener("touchstart",function(event){
+  controller.handleKeyDown(event,true);
+})
+
+window.addEventListener("touchend",function(event){
+  controller.handleKeyDown(event,true);
+})
+
