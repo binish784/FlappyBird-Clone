@@ -13,6 +13,7 @@ This project is built with **_Javascript_** using **_ES6 Classes_**, **_HTML CAN
 
 ### Additional Features
 * Two Bird Variations
+* Touch Responsive
 
 ### Screenshot
 
