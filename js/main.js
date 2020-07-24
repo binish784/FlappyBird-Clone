@@ -18,14 +18,6 @@ function render(){
   game.render();
 }
 
-window.addEventListener("keydown",function(event){
-  controller.handleKeyDown(event);
-});
-
-window.addEventListener("keyup",function(event){
-  controller.handleKeyDown(event);
-});
-
 window.addEventListener("touchstart",function(event){
   controller.handleKeyDown(event,true);
 })
@@ -33,4 +25,13 @@ window.addEventListener("touchstart",function(event){
 window.addEventListener("touchend",function(event){
   controller.handleKeyDown(event,true);
 })
+
+
+window.addEventListener("keydown",function(event){
+  controller.handleKeyDown(event);
+});
+
+window.addEventListener("keyup",function(event){
+  controller.handleKeyDown(event);
+});
 
