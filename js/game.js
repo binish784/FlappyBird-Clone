@@ -4,6 +4,7 @@ class Game{
     this.canvas=canvas;
     this.bird=new Bird();
     this.pipes=[];
+
     this.gravity=5;
     this.pipe_speed=0;
     this.pipe_number=3;
@@ -14,9 +15,9 @@ class Game{
     this.floor_pattern=undefined;
     this.latest_pipe=this.pipe_number-1;
     this.game_over=false;
-    this.canvas_width=450;
+    this.canvas_width=config.canvas.width;
     this.screen=0;
-		this.canvas_height=600;
+		this.canvas_height=config.canvas.height;
     this.game_start=false;
   }
 
