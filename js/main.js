@@ -9,6 +9,7 @@ canvas.style.backgroundColor = "white";
 canvas.style.position = "absolute";
 canvas.style.left =  "50%";
 canvas.style.top = "50%";
+canvas.style.touchAction="manipulation"
 
 let body = document.getElementsByTagName('body')[0];
 body.appendChild(canvas);
